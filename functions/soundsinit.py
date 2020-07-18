@@ -41,6 +41,6 @@ def init(directory):
     sounds = {}
     for sound in lsounds:
         filepath = Path(sound)
-        sounds[filepath.name] = pygame.mixer.Sound(f"{sound}")
+        sounds[filepath.stem] = pygame.mixer.Sound(f"{filepath}")
     return sounds
 

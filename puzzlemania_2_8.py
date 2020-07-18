@@ -566,8 +566,8 @@ def start():
     global puzzle, coords, drag
     # creates puzzle grabbing pieces from this image
     create_puzzle()
-    # pygame.mixer.music.load("sounds\\coding002.wav")
-    # pygame.mixer.music.play()
+    pygame.mixer.music.load("sounds\\coding002.wav")
+    pygame.mixer.music.play()
     # show_puzzle2()
     while True:
         Puzzle.screen.fill((0,0,0))
