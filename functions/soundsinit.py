@@ -1,5 +1,7 @@
 import pygame
 from glob import glob
+from pathlib import Path
+
 
 def init(directory):
     '''
@@ -34,10 +36,11 @@ def init(directory):
     pygame.mixer.init(22050, -16, 2, 512)
     pygame.mixer.set_num_channels(32)
     # Load all sounds
-    lsounds = glob(f"{directory}\\*.wav")
+    lsounds = glob(f"{directory}/*.wav")
     # Dictionary with all sounds, keys are the name of wav
     sounds = {}
     for sound in lsounds:
-        sounds[sound.split("\\")[1][:-4]] = pygame.mixer.Sound(f"{sound}")
+        filepath = Path(sound)
+        sounds[filepath.name] = pygame.mixer.Sound(f"{sound}")
     return sounds
 

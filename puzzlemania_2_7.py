@@ -4,6 +4,7 @@ from random import shuffle, choice, randrange
 from functions.grab import grab
 from functions.soundsinit import init
 from functions.fonts import write
+from functions.menu import menu
 from glob import glob
 import os
 
@@ -22,6 +23,8 @@ import os
                 save the actual situation
                 menu
                 choose the image you want
+                2.8
+                - finish menu
 
 
 
@@ -29,7 +32,7 @@ import os
 
 
 '''
-
+    
 
 def harmonic_color(image):
     w, h = image.get_size()
@@ -544,6 +547,7 @@ def bars():
 def font1(text, height):
     write2(text, Puzzle.screen, Puzzle.font, 100, height)
 
+
 def write2(text, screen, font, x, y, color="Coral",):
     text = font.render(text, 1, pygame.Color(color))
     text_rect = text.get_rect(center=(Puzzle.w // 4, y))
@@ -579,5 +583,5 @@ def start():
         pygame.display.update()
         Puzzle.clock.tick(60)
 
-
+menu(Puzzle, start)
 start()
