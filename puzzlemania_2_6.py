@@ -26,11 +26,11 @@ import os
 
 '''
 
+
 def harmonic_color(image):
     w, h = image.get_size()
     color = image.get_at((randrange(0, w // 2), randrange(0, h // 2)))
     return color
-
 
 def floor(num_to_round):
     "Return a rounded number. Ex.: 510 => 500; 36 => 30"
@@ -55,7 +55,7 @@ class Puzzle:
     w = floor(w)
     h = floor(h)
     screen = pygame.display.set_mode((w * 3 - w // 2 + 14, h))
-    pygame.display.set_caption("Pyzzle-mania 2.6")
+    pygame.display.set_caption("Puzzle-mania 2.6")
     image.convert()
     bar = pygame.Surface((7, h))
     bar.fill(harmonic_color(image))
@@ -84,7 +84,7 @@ class Puzzle:
         if int(Puzzle.score) > int(Puzzle.maxscore):
             self.write_maxscore(self.file, str(int(Puzzle.score)))
 
-    def write_maxscore(self, file, score):
+    def write_maxscore(self, score):
         "Write in the score.txt file"
         with open(self.file, "w") as file:
             file.write(str(score))
