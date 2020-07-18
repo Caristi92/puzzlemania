@@ -9,7 +9,7 @@ a puzzle game
 
 - rightmouse: flip tile horizzontally
 
-- middle mouse upor down:flip tile vertically
+- middle mouse up or down:flip tile vertically
 
 
 # Youtube gameplay
