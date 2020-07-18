@@ -18,6 +18,10 @@ import os
                 v. 25.0
                 - better sounds
                 - improve scoring
+                2.7
+                save the actual situation
+                menu
+                choose the image you want
 
 
 

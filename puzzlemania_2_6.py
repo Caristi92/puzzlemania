@@ -82,7 +82,7 @@ class Puzzle:
 
     def savescore(self):
         if int(Puzzle.score) > int(Puzzle.maxscore):
-            self.write_maxscore(self.file, str(int(Puzzle.score)))
+            self.write_maxscore(str(int(Puzzle.score)))
 
     def write_maxscore(self, score):
         "Write in the score.txt file"
