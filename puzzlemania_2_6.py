@@ -91,6 +91,7 @@ class Puzzle:
             Puzzle.maxscore = score
 
     def read_maxscore(self):
+        "Read the maxscore from self.file if it exists"
         with open(self.file, "r") as file_saved:
             last_maxscore = int(file_saved.read())
             print("Maxscore = " + str(last_maxscore))
@@ -108,12 +109,7 @@ class Puzzle:
         self.write_maxscore("10")
 
     def load_maxscore(self):
-        ''' check if a file exists
-                if exists
-                    if is empty: it writes 10 in it
-                    else it reads the score as an integer
-                else: create and write 10
-        '''
+        "Read the maxiscore or create it if new"
         if self.file_exists():
             if not self.file_is_empty():
                 # This reads the score and put in Puuzzle.maxscore

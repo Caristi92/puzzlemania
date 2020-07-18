@@ -569,11 +569,12 @@ def start():
         show_puzzle2()
         show_puzzle3()
         bars()
-        writing(f"Puzzlemania {int(Puzzle.score)}", 10, Puzzle.h // 2 + 30)
-        font1(f"Puzzlemania {Puzzle.maxscore}", Puzzle.h - 30)
+        writing(f"Score {int(Puzzle.score)}", 10, Puzzle.h // 2 + 30)
+        font1(f"Maxiscore {Puzzle.maxscore}", Puzzle.h - 30)
         if Event_listener.drag == 1:
             Puzzle.score -= .01
             Puzzle.screen.blit(Event_listener.tile, (pygame.mouse.get_pos()[0] - Tile.w // 2, pygame.mouse.get_pos()[1] - Tile.h // 2))
+        # User input
         Event_listener().check()
         pygame.display.update()
         Puzzle.clock.tick(60)
