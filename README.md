@@ -1,5 +1,10 @@
 # puzzlemania
-a puzzle game
+a puzzle game.
+
+v. 3.0: changed sounds, still many things to change in music.
+With m you can change the music, but for now there are just two.
+There is an issue: if you leave a tile on more tiles fixed, the
+tile will be lost... need to fix this.
 
 # Controls
 
@@ -11,6 +16,7 @@ a puzzle game
 
 - middle mouse up or down:flip tile vertically
 
+- "m" key to change the music
 
 # Youtube gameplay
 
