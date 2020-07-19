@@ -23,3 +23,10 @@ https://youtu.be/nTyGLVHLGNY
 
 https://formazione.itch.io/puzzle-mania-26
 
+# Fixed issues
+
+2.8
+
+- works on mac os (path issues fixed with pathlib)
+
+- music and new sounds added

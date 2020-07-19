@@ -30,17 +30,21 @@ def init(directory):
     '''
 
     # This is to avoid lag
-    pygame.mixer.pre_init(44100, -16, 1, 512)
+    pygame.mixer.pre_init(44100, -16, 2, 512)
     pygame.init()
     pygame.mixer.quit()
-    pygame.mixer.init(22050, -16, 2, 512)
+    pygame.mixer.init(44100, -16, 2, 512)
     pygame.mixer.set_num_channels(32)
     # Load all sounds
-    lsounds = glob(f"{directory}/*.wav")
+    lsounds = glob(f"{directory}/*.mp3")
     # Dictionary with all sounds, keys are the name of wav
     sounds = {}
+    winsounds = []
     for sound in lsounds:
         filepath = Path(sound)
-        sounds[filepath.stem] = pygame.mixer.Sound(f"{filepath}")
-    return sounds
+        if filepath.stem.startswith("Marker"):
+            winsounds.append(pygame.mixer.Sound(f"{filepath}"))
+        else:
+            sounds[filepath.stem] = pygame.mixer.Sound(f"{filepath}")
+    return sounds, winsounds
 

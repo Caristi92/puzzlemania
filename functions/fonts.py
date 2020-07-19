@@ -5,4 +5,3 @@ def write(text, screen, font, x, y, color="Coral",):
     text_rect = text.get_rect(center=(500 // 2, y))
     screen.blit(text, text_rect)
     return text
-
