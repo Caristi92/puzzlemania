@@ -18,6 +18,8 @@ tile will be lost... need to fix this.
 
 - "m" key to change the music
 
+- "s" to stop the music
+
 # Youtube gameplay
 
 

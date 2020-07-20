@@ -42,9 +42,11 @@ import os
     
 
 def harmonic_color(image):
+    "Returns a random color from image"
     w, h = image.get_size()
     color = image.get_at((randrange(0, w // 2), randrange(0, h // 2)))
     return color
+
 
 def floor(num_to_round):
     "Return a rounded number. Ex.: 510 => 500; 36 => 30"
@@ -62,6 +64,7 @@ def floor(num_to_round):
 
 
 class Puzzle:
+    tiles_fixed = 0
     score = 0
     sounds, winsounds = init("sounds")
     image = pygame.image.load(choice(glob("puzzles\\*.png")))
@@ -168,7 +171,7 @@ class Tile:
 def check_if_ok(tile3, tile1, numtile):
     global rects3, puzzle3, puzzle
 
-    tile_fixed = 0
+    
 
     # Check if the images are the same (same color)
     uguale = 0
@@ -197,12 +200,12 @@ def check_if_ok(tile3, tile1, numtile):
         puzzle3[numtile][1] = tile3
         puzzle[numtile][1] = tile3
         # Another tile fixed correctly
-        tile_fixed += 1
+        Puzzle.tiles_fixed += 1
     else:
         Puzzle.score -= 1
 
     # Check if the puzzle is finished
-    if tile_fixed == (Tile.w // 10) * (Tile.h // 10) - 1:
+    if Puzzle.tiles_fixed == (Puzzle.w // Tile.w) * (Puzzle.h // Tile.h) - 1:
         Puzzle.image = pygame.image.load(choice(glob("puzzles/*.png")))
         create_puzzle()
         show_puzzle()
@@ -279,7 +282,7 @@ class Event_listener():
                     create_puzzle()
                     show_puzzle()
                 if event.key == pygame.K_s:
-                    show_puzzle()
+                    pygame.mixer.music.unload()
                 if event.key == pygame.K_m:
                     pygame.mixer.music.unload()
                     music()
@@ -345,7 +348,7 @@ class Event_listener():
                     #                                        #
                     #            Clicco nel 3o quadrante     #
                     #                                        #
-                    elif x > Puzzle.w * 2 - Puzzle.w // 2 and x < Puzzle.w * 3 - Puzzle.w // 2:
+                    elif x > Puzzle.w * 2 - Puzzle.w // 2 + 7: # and x < Puzzle.w * 3 - Puzzle.w // 2:
                         # coord2 = [num, x, y]
                         coord2 = get_coords2(event.pos)
                         # you picked the tile in the 3rd quadro
@@ -403,14 +406,21 @@ class Event_listener():
 
                         elif Event_listener.pos3:
                             puzzle3[Event_listener.p3pos][1] = Event_listener.tile
+                        else:
+                            self.back_in_place()
+
+# ho indentato questo else per fixare il bug del tile scomparso
                     else:
                         # Rimette il pezzo preso nel primo spazio vuoto
                         # del puzzle 2
-                        for n, tile in enumerate(puzzle2):
-                            if tile[1] == blacktile:
-                                Event_listener.drag = 0
-                                puzzle2[n][1] = Event_listener.tile
-                                break
+                        self.back_in_place()
+
+    def back_in_place(self):
+        for n, tile in enumerate(puzzle2):
+            if tile[1] == blacktile:
+                Event_listener.drag = 0
+                puzzle2[n][1] = Event_listener.tile
+                break
 
     def quit(self):
         "Quite pygame and the python interpreter"
@@ -598,7 +608,7 @@ def start():
     create_puzzle()
     # soundinit()
     # show_puzzle2()
-    music()
+    # music()
     while True:
         Puzzle.screen.fill((0,0,0))
         #Puzzle.screen.blit(Puzzle.screen2, (0, 500))
@@ -607,6 +617,7 @@ def start():
         show_puzzle3()
         bars()
         writing(f"Score {int(Puzzle.score)}", 10, Puzzle.h // 2 + 30)
+        writing(f"Pieces fixed = {int(Puzzle.tiles_fixed)}/{Puzzle.w // Tile.w * Puzzle.h // Tile.h}", 10, Puzzle.h // 2 + 60)
         font1(f"Maxiscore {Puzzle.maxscore}", Puzzle.h - 30)
         if Event_listener.drag == 1:
             Puzzle.score -= .01
