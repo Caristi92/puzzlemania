@@ -32,6 +32,8 @@ import os
                 - fix bug lost tiles
                 - memorize where you are
                 - new loops
+                3.1
+                shrink the middle table with puzzles
 
 
 
@@ -39,7 +41,7 @@ import os
 
 
 '''
-    
+print(sys.version)
 
 def harmonic_color(image):
     "Returns a random color from image"
@@ -72,7 +74,7 @@ class Puzzle:
     w = floor(w)
     h = floor(h)
     screen = pygame.display.set_mode((w * 3 - w // 2 + 14, h))
-    pygame.display.set_caption("Puzzle-mania 2.6")
+    pygame.display.set_caption("Puzzle-mania 3.1")
     image.convert()
     bar = pygame.Surface((7, h))
     bar.fill(harmonic_color(image))
@@ -492,7 +494,7 @@ def show_puzzle2():
     # the coords=[[0, 50, 0], [1, 100, 0]...]
     for num_tile, x, y in coords:
         blit(puzzle2[n][1], x + Puzzle.w // 2 + 7, y)
-        rects2.append(pygame.Rect(x + Puzzle.w // 2 + 7 , y, Tile.w, Tile.h))
+        # rects2.append(pygame.Rect(x + Puzzle.w // 2 + 7 , y, Tile.w, Tile.h))
         n += 1
     draw_grid()
 
@@ -506,7 +508,7 @@ def show_puzzle3():
     
     for num_tile, x, y in coords:
         blit(puzzle3[n][1], x + Puzzle.w * 2 - Puzzle.w // 2 + 14, y)
-        rects3.append(pygame.Rect(x + Puzzle.w * 2 - Puzzle.w // 2 + 14, y, Tile.w, Tile.h))
+        # rects3.append(pygame.Rect(x + Puzzle.w * 2 - Puzzle.w // 2 + 14, y, Tile.w, Tile.h))
         n += 1
     draw_grid2()
 
